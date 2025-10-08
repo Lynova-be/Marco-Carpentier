@@ -7,8 +7,8 @@ export function Hero() {
   // Resolve images from src/images so Vite bundles them
   const asset = (p: string) => {
     if (!p) return p;
-    if (p.startsWith('../src/images/') || p.startsWith('../images/')) {
-      return new URL(p.replace('../src/images/', '../images/'), import.meta.url).href;
+    if (p.startsWith('../') || p.startsWith('./')) {
+      return new URL(p, import.meta.url).href;
     }
     return p; // external URL
   };
