@@ -12,9 +12,15 @@ type SingleItem = { src: string; alt: string };
 type GalleryItem = PairItem | SingleItem;
 
 // Resolve images at build time so Vite rewrites URLs correctly in production
+// Note: from this file (src/pages/Fotos.tsx) the correct relative prefix is '../images/...'
+// Some entries still use '../src/images/...', so we normalize those to '../images/...'
 const asset = (p: string) => {
   if (!p) return p;
-  if (p.startsWith('../') || p.startsWith('./')) {
+  if (p.startsWith('../src/images/')) {
+    const normalized = p.replace('../src/images/', '../images/');
+    return new URL(normalized, import.meta.url).href;
+  }
+  if (p.startsWith('../images/') || p.startsWith('./images/')) {
     return new URL(p, import.meta.url).href;
   }
   return p; // absolute http(s) or /public path
