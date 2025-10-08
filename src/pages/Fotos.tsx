@@ -11,14 +11,10 @@ type PairItem = { before: string; after: string; alt: string };
 type SingleItem = { src: string; alt: string };
 type GalleryItem = PairItem | SingleItem;
 
-// Resolve images from src/images using module-relative URLs
+// Resolve images at build time so Vite rewrites URLs correctly in production
 const asset = (p: string) => {
   if (!p) return p;
-  if (p.startsWith('../src/images/')) {
-    const rel = p.replace('../src/images/', '../images/');
-    return new URL(rel, import.meta.url).href;
-  }
-  if (p.startsWith('../images/')) {
+  if (p.startsWith('../') || p.startsWith('./')) {
     return new URL(p, import.meta.url).href;
   }
   return p; // absolute http(s) or /public path
