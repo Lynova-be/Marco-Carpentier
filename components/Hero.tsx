@@ -4,6 +4,14 @@ import { Button } from './ui/button';
 import { ImageWithFallback } from './figma/ImageWithFallback';
 
 export function Hero() {
+  // Resolve images from src/images so Vite bundles them
+  const asset = (p: string) => {
+    if (!p) return p;
+    if (p.startsWith('../src/images/') || p.startsWith('../images/')) {
+      return new URL(p.replace('../src/images/', '../images/'), import.meta.url).href;
+    }
+    return p; // external URL
+  };
   return (
     <section id="home" className="relative min-h-screen flex items-center overflow-hidden">
       {/* Background */}
@@ -131,7 +139,7 @@ export function Hero() {
           >
             <div className="relative rounded-3xl overflow-hidden shadow-2xl">
               <ImageWithFallback
-                src="../src/images/Afbeelding van WhatsApp op 2025-09-18 om 20.25.43_d4ed4b3d.jpg"
+                src={asset('../src/images/Afbeelding van WhatsApp op 2025-09-18 om 20.25.43_d4ed4b3d.jpg')}
                 alt="Professional coating work"
                 className="w-full h-[600px] object-cover"
               />

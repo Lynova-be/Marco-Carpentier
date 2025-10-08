@@ -3,6 +3,14 @@ import { Shield, Home, Palette, Car } from 'lucide-react';
 import { Card, CardContent } from './ui/card';
 
 export function Services() {
+  // Resolve images from src/images so Vite bundles them
+  const asset = (p: string) => {
+    if (!p) return p;
+    if (p.startsWith('../src/images/') || p.startsWith('../images/')) {
+      return new URL(p.replace('../src/images/', '../images/'), import.meta.url).href;
+    }
+    return p; // external URL
+  };
   const services = [
     {
       icon: Car,
@@ -70,7 +78,7 @@ export function Services() {
                 <Card className="h-full overflow-hidden border-0 shadow-lg hover:shadow-2xl transition-all duration-300 bg-white">
                   <div className="relative h-48 overflow-hidden">
                     <img
-                      src={service.image}
+                      src={asset(service.image)}
                       alt={service.title}
                       className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                     />
