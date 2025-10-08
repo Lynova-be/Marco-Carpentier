@@ -1,45 +1,40 @@
 import { motion } from 'motion/react';
 import { Shield, Home, Palette, Car } from 'lucide-react';
 import { Card, CardContent } from './ui/card';
+// Static asset imports so Vite rewrites paths at build time
+import imgSchade from '../src/images/Afbeelding van WhatsApp op 2025-09-18 om 20.12.33_78c0a3b3.jpg';
+import imgInbraak from '../src/images/Afbeelding van WhatsApp op 2025-09-18 om 20.57.53_e91223a2.jpg';
+import imgRenovatie from '../src/images/Afbeelding van WhatsApp op 2025-09-18 om 20.31.38_0b22cf57.jpg';
+import imgPVC from '../src/images/Afbeelding van WhatsApp op 2025-09-18 om 20.26.27_b38d7984.jpg';
 
 export function Services() {
-  // Resolve images from src/images so Vite bundles them
-  const asset = (p: string) => {
-    if (!p) return p;
-    // If it's a relative path, let Vite resolve & bundle it
-    if (p.startsWith('../') || p.startsWith('./')) {
-      return new URL(p, import.meta.url).href;
-    }
-    // Otherwise assume it's an absolute URL
-    return p;
-  };
   const services = [
     {
       icon: Car,
       title: 'Schadeherstel',
       description: 'Snelle en vakkundige reparaties van lakschade, krassen en deuken.',
-      image: '../src/images/Afbeelding van WhatsApp op 2025-09-18 om 20.12.33_78c0a3b3.jpg',
+      image: imgSchade,
       gradient: 'from-blue-500 to-cyan-500'
     },
     {
       icon: Shield,
       title: 'Inbraakherstel',
       description: 'Esthetisch herstel na sporen na inbraak met duurzame afwerking.',
-      image: '../src/images/Afbeelding van WhatsApp op 2025-09-18 om 20.57.53_e91223a2.jpg',
+      image: imgInbraak,
       gradient: 'from-purple-500 to-pink-500'
     },
     {
       icon: Home,
       title: 'Renovatie',
       description: 'Alu ramen, deuren, veranda\'s en garagepoorten weer als nieuw.',
-      image: '../src/images/Afbeelding van WhatsApp op 2025-09-18 om 20.31.38_0b22cf57.jpg',
+      image: imgRenovatie,
       gradient: 'from-green-500 to-teal-500'
     },
     {
       icon: Palette,
       title: 'Spuiten van PVC',
       description: 'Strakke kwaliteitsafwerking voor PVC ramen en deuren in elke kleur.',
-      image: '../src/images/Afbeelding van WhatsApp op 2025-09-18 om 20.26.27_b38d7984.jpg',
+      image: imgPVC,
       gradient: 'from-orange-500 to-red-500'
     }
   ];
@@ -80,7 +75,7 @@ export function Services() {
                 <Card className="h-full overflow-hidden border-0 shadow-lg hover:shadow-2xl transition-all duration-300 bg-white">
                   <div className="relative h-48 overflow-hidden">
                     <img
-                      src={asset(service.image)}
+                      src={service.image}
                       alt={service.title}
                       className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                     />

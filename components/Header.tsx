@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { motion } from 'motion/react';
 import { Menu, X } from 'lucide-react';
 import { Button } from './ui/button';
+import logo from '@/images/image-removebg-preview (7).png';
 
 export function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -29,7 +30,7 @@ export function Header() {
             aria-label="Ga naar home"
           >
             <img
-              src={new URL('../src/images/image-removebg-preview (7).png', import.meta.url).href}
+              src={logo}
               alt="Mobile Coating logo"
               className="h-10 w-auto select-none"
               draggable={false}
