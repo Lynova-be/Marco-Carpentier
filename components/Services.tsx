@@ -6,10 +6,12 @@ export function Services() {
   // Resolve images from src/images so Vite bundles them
   const asset = (p: string) => {
     if (!p) return p;
-    if (p.startsWith('../src/images/') || p.startsWith('../images/')) {
-      return new URL(p.replace('../src/images/', '../images/'), import.meta.url).href;
+    // If it's a relative path, let Vite resolve & bundle it
+    if (p.startsWith('../') || p.startsWith('./')) {
+      return new URL(p, import.meta.url).href;
     }
-    return p; // external URL
+    // Otherwise assume it's an absolute URL
+    return p;
   };
   const services = [
     {
