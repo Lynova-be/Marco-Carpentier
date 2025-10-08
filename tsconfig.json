@@ -1,0 +1,30 @@
+{
+  "compilerOptions": {
+    "target": "ES2020",
+    "useDefineForClassFields": true,
+    "lib": ["ES2020", "DOM", "DOM.Iterable"],
+    "module": "ESNext",
+    "skipLibCheck": true,
+    "jsx": "react-jsx",
+    "moduleResolution": "bundler",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "noEmit": true,
+    "esModuleInterop": true,
+    "noUnusedLocals": false,
+    "noUnusedParameters": false,
+    "forceConsistentCasingInFileNames": true,
+    "strict": true,
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["./src/*"],
+      "@radix-ui/react-slot@1.1.2": ["./node_modules/@radix-ui/react-slot"],
+      "class-variance-authority@0.7.1": ["./node_modules/class-variance-authority"],
+      "@radix-ui/react-slider@1.2.3": ["./node_modules/@radix-ui/react-slider"],
+      "@radix-ui/react-accordion@1.2.3": ["./node_modules/@radix-ui/react-accordion"],
+      "@radix-ui/react-dialog@1.1.6": ["./node_modules/@radix-ui/react-dialog"],
+      "lucide-react@0.487.0": ["./node_modules/lucide-react"]
+    }
+  },
+  "include": ["src", "App.tsx", "components"]
+}
