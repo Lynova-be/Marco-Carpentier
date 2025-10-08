@@ -4,14 +4,6 @@ import { Slider } from './ui/slider';
 import { Button } from './ui/button';
 
 export function BeforeAfter() {
-  // Resolve images from src/images so Vite bundles them
-  const asset = (p: string) => {
-    if (!p) return p;
-    if (p.startsWith('../src/images/') || p.startsWith('../images/')) {
-      return new URL(p.replace('../src/images/', '../images/'), import.meta.url).href;
-    }
-    return p; // external URL
-  };
   const [sliderValue, setSliderValue] = useState([50]);
 
   return (
@@ -47,7 +39,7 @@ export function BeforeAfter() {
               {/* Before Image */}
               <div className="absolute inset-0">
                 <img
-                  src={asset('../src/images/Afbeelding van WhatsApp op 2025-09-18 om 20.59.31_07887158.jpg')}
+                  src={new URL('../src/images/Afbeelding van WhatsApp op 2025-09-18 om 20.59.31_07887158.jpg', import.meta.url).href}
                   alt="Before renovation"
                   className="w-full h-full object-cover"
                 />
@@ -64,7 +56,7 @@ export function BeforeAfter() {
                 }}
               >
                 <img
-                  src={asset('../src/images/Afbeelding van WhatsApp op 2025-09-18 om 20.59.31_9386934c.jpg')}
+                  src={new URL('../src/images/Afbeelding van WhatsApp op 2025-09-18 om 20.59.31_9386934c.jpg', import.meta.url).href}
                   alt="After renovation"
                   className="w-full h-full object-cover"
                 />
