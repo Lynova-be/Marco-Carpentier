@@ -11,100 +11,93 @@ type PairItem = { before: string; after: string; alt: string };
 type SingleItem = { src: string; alt: string };
 type GalleryItem = PairItem | SingleItem;
 
-// Resolve images at build time so Vite rewrites URLs correctly in production
-// Note: from this file (src/pages/Fotos.tsx) the correct relative prefix is '../images/...'
-// Some entries still use '../src/images/...', so we normalize those to '../images/...'
-const asset = (p: string) => {
-  if (!p) return p;
-  if (p.startsWith('../src/images/')) {
-    const normalized = p.replace('../src/images/', '../images/');
-    return new URL(normalized, import.meta.url).href;
-  }
-  if (p.startsWith('../images/') || p.startsWith('./images/')) {
-    return new URL(p, import.meta.url).href;
-  }
-  return p; // absolute http(s) or /public path
+// Statisch alle afbeeldingen includen zodat Vite ze altijd bundelt
+const imageUrls = import.meta.glob('../images/*', { eager: true, as: 'url' }) as Record<string, string>;
+const getUrl = (fileName: string) => {
+  // Zoeken op bestandsnaam (path eindigt op /images/<fileName>)
+  const entry = Object.entries(imageUrls).find(([path]) => path.endsWith(`/images/${fileName}`));
+  return entry ? entry[1] : '';
 };
 const images: GalleryItem[] = [
   {
-    before: '../src/images/Afbeelding van WhatsApp op 2025-09-18 om 20.12.33_78c0a3b3.jpg',
-    after: '../src/images/Afbeelding van WhatsApp op 2025-09-18 om 20.12.33_8fd99c78.jpg',
+    before: 'Afbeelding van WhatsApp op 2025-09-18 om 20.12.33_78c0a3b3.jpg',
+    after: 'Afbeelding van WhatsApp op 2025-09-18 om 20.12.33_8fd99c78.jpg',
     alt: '',
   },
   {
-    before: '../src/images/Afbeelding van WhatsApp op 2025-09-18 om 20.25.43_10cc6d51.jpg',
-    after: '../src/images/Afbeelding van WhatsApp op 2025-09-18 om 20.25.43_d4ed4b3d.jpg',
+    before: 'Afbeelding van WhatsApp op 2025-09-18 om 20.25.43_10cc6d51.jpg',
+    after: 'Afbeelding van WhatsApp op 2025-09-18 om 20.25.43_d4ed4b3d.jpg',
     alt: '',
   },
   {
-    before: '../src/images/Afbeelding van WhatsApp op 2025-09-18 om 20.26.26_7c8d9721.jpg',
-    after: '../src/images/Afbeelding van WhatsApp op 2025-09-18 om 20.26.27_b38d7984.jpg',
+    before: 'Afbeelding van WhatsApp op 2025-09-18 om 20.26.26_7c8d9721.jpg',
+    after: 'Afbeelding van WhatsApp op 2025-09-18 om 20.26.27_b38d7984.jpg',
     alt: '',
   },
   {
-    before: '../src/images/Afbeelding van WhatsApp op 2025-09-18 om 20.27.45_9594b1e0.jpg',
-    after: '../src/images/Afbeelding van WhatsApp op 2025-09-18 om 20.27.45_01243dbd.jpg',
+    before: 'Afbeelding van WhatsApp op 2025-09-18 om 20.27.45_9594b1e0.jpg',
+    after: 'Afbeelding van WhatsApp op 2025-09-18 om 20.27.45_01243dbd.jpg',
     alt: '',
   },
   {
-    before: '../src/images/Afbeelding van WhatsApp op 2025-09-18 om 20.54.12_d78ae399.jpg',
-    after: '../src/images/Afbeelding van WhatsApp op 2025-09-18 om 20.54.12_62e78012.jpg',
+    before: 'Afbeelding van WhatsApp op 2025-09-18 om 20.54.12_d78ae399.jpg',
+    after: 'Afbeelding van WhatsApp op 2025-09-18 om 20.54.12_62e78012.jpg',
     alt: '',
   },
   {
-    before: '../src/images/Afbeelding van WhatsApp op 2025-09-18 om 20.55.15_bc2dd99e.jpg',
-    after: '../src/images/Afbeelding van WhatsApp op 2025-09-18 om 20.55.16_6db8a658.jpg',
+    before: 'Afbeelding van WhatsApp op 2025-09-18 om 20.55.15_bc2dd99e.jpg',
+    after: 'Afbeelding van WhatsApp op 2025-09-18 om 20.55.16_6db8a658.jpg',
     alt: '',
   },
   {
-    before: '../src/images/Afbeelding van WhatsApp op 2025-09-18 om 20.56.35_3a74c594.jpg',
-    after: '../src/images/Afbeelding van WhatsApp op 2025-09-18 om 20.56.35_2c719731.jpg',
+    before: 'Afbeelding van WhatsApp op 2025-09-18 om 20.56.35_3a74c594.jpg',
+    after: 'Afbeelding van WhatsApp op 2025-09-18 om 20.56.35_2c719731.jpg',
     alt: '',
   },
   {
-    before: '../src/images/Afbeelding van WhatsApp op 2025-09-18 om 20.57.53_e91223a2.jpg',
-    after: '../src/images/Afbeelding van WhatsApp op 2025-09-18 om 20.57.53_5cb78684.jpg',
+    before: 'Afbeelding van WhatsApp op 2025-09-18 om 20.57.53_e91223a2.jpg',
+    after: 'Afbeelding van WhatsApp op 2025-09-18 om 20.57.53_5cb78684.jpg',
     alt: '',
   },
   {
-    before: '../src/images/Afbeelding van WhatsApp op 2025-09-18 om 20.58.38_6f38058c.jpg',
-    after: '../src/images/Afbeelding van WhatsApp op 2025-09-18 om 20.58.38_1d1a0458.jpg',
+    before: 'Afbeelding van WhatsApp op 2025-09-18 om 20.58.38_6f38058c.jpg',
+    after: 'Afbeelding van WhatsApp op 2025-09-18 om 20.58.38_1d1a0458.jpg',
     alt: '',
   },
   {
-    before: '../src/images/Afbeelding van WhatsApp op 2025-09-18 om 20.59.31_07887158.jpg',
-    after: '../src/images/Afbeelding van WhatsApp op 2025-09-18 om 20.59.31_9386934c.jpg',
+    before: 'Afbeelding van WhatsApp op 2025-09-18 om 20.59.31_07887158.jpg',
+    after: 'Afbeelding van WhatsApp op 2025-09-18 om 20.59.31_9386934c.jpg',
     alt: '',
   },
   {
-    before: '../src/images/Afbeelding van WhatsApp op 2025-09-18 om 21.03.42_e5c231f5.jpg',
-    after: '../src/images/Afbeelding van WhatsApp op 2025-09-18 om 21.03.42_be813768.jpg',
+    before: 'Afbeelding van WhatsApp op 2025-09-18 om 21.03.42_e5c231f5.jpg',
+    after: 'Afbeelding van WhatsApp op 2025-09-18 om 21.03.42_be813768.jpg',
     alt: '',
   },
   {
-    before: '../src/images/Afbeelding van WhatsApp op 2025-09-18 om 21.04.52_ea68c676.jpg',
-    after: '../src/images/Afbeelding van WhatsApp op 2025-09-18 om 21.04.52_c2f7427b.jpg',
+    before: 'Afbeelding van WhatsApp op 2025-09-18 om 21.04.52_ea68c676.jpg',
+    after: 'Afbeelding van WhatsApp op 2025-09-18 om 21.04.52_c2f7427b.jpg',
     alt: '',
   },
   {
-    before: '../src/images/Afbeelding van WhatsApp op 2025-09-18 om 21.05.52_829d8973.jpg',
-    after: '../src/images/Afbeelding van WhatsApp op 2025-09-18 om 21.05.52_41f0bd4d.jpg',
+    before: 'Afbeelding van WhatsApp op 2025-09-18 om 21.05.52_829d8973.jpg',
+    after: 'Afbeelding van WhatsApp op 2025-09-18 om 21.05.52_41f0bd4d.jpg',
     alt: '',
   },
   {
-    before: '../src/images/Afbeelding van WhatsApp op 2025-09-18 om 21.07.50_aad2cb2f.jpg',
-    after: '../src/images/Afbeelding van WhatsApp op 2025-09-18 om 21.07.50_fc5e8b94.jpg',
+    before: 'Afbeelding van WhatsApp op 2025-09-18 om 21.07.50_aad2cb2f.jpg',
+    after: 'Afbeelding van WhatsApp op 2025-09-18 om 21.07.50_fc5e8b94.jpg',
     alt: '',
   },
   {
-    before: '../src/images/Afbeelding van WhatsApp op 2025-09-18 om 20.59.07_09fd225b.jpg',
-    after: '../src/images/Afbeelding van WhatsApp op 2025-09-18 om 20.59.07_d8ed1b3f.jpg',
+    before: 'Afbeelding van WhatsApp op 2025-09-18 om 20.59.07_09fd225b.jpg',
+    after: 'Afbeelding van WhatsApp op 2025-09-18 om 20.59.07_d8ed1b3f.jpg',
     alt: '',
   },
-  { src: '../src/images/Afbeelding van WhatsApp op 2025-09-18 om 20.56.10_de3cd015.jpg', alt: '' },
-  { src: '../src/images/Afbeelding van WhatsApp op 2025-09-18 om 20.52.48_42a2dfde.jpg', alt: '' },
-  { src: '../src/images/Afbeelding van WhatsApp op 2025-09-18 om 20.50.59_b8707d5b.jpg', alt: '' },
-  { src: '../src/images/Afbeelding van WhatsApp op 2025-09-18 om 20.31.38_0b22cf57.jpg', alt: '' },
+  { src: 'Afbeelding van WhatsApp op 2025-09-18 om 20.56.10_de3cd015.jpg', alt: '' },
+  { src: 'Afbeelding van WhatsApp op 2025-09-18 om 20.52.48_42a2dfde.jpg', alt: '' },
+  { src: 'Afbeelding van WhatsApp op 2025-09-18 om 20.50.59_b8707d5b.jpg', alt: '' },
+  { src: 'Afbeelding van WhatsApp op 2025-09-18 om 20.31.38_0b22cf57.jpg', alt: '' },
   
 
 ];
@@ -142,7 +135,7 @@ export default function Fotos() {
           const galleryItems = images
             .map((item) => {
               if (isPair(item)) {
-                const img = asset(item.after);
+                const img = getUrl(item.after);
                 if (!img) return null;
                 return {
                   title: item.alt || 'Voor & Na',
@@ -151,7 +144,7 @@ export default function Fotos() {
                   image: img,
                 };
               } else {
-                const img = asset(item.src);
+                const img = getUrl(item.src);
                 if (!img) return null;
                 return {
                   title: item.alt || 'Foto',
@@ -209,7 +202,7 @@ function BeforeAfterLightboxContent({ item }: { item: PairItem }) {
       <div className="relative h-[70vh] bg-black/5 overflow-hidden">
         {/* Before */}
         <ImageWithFallback
-          src={asset(item.before)}
+          src={getUrl(item.before)}
           alt={item.alt + ' – voor'}
           className="absolute inset-0 w-full h-full object-contain"
         />
@@ -221,7 +214,7 @@ function BeforeAfterLightboxContent({ item }: { item: PairItem }) {
           }}
         >
           <ImageWithFallback
-            src={asset(item.after)}
+            src={getUrl(item.after)}
             alt={item.alt + ' – na'}
             className="w-full h-full object-contain bg-transparent"
           />
@@ -256,7 +249,7 @@ function SingleLightboxContent({ item }: { item: SingleItem }) {
     <div className="w-full">
       <div className="relative h-[70vh] bg-black/5 overflow-hidden">
         <ImageWithFallback
-          src={asset(item.src)}
+          src={getUrl(item.src)}
           alt={item.alt || 'Foto'}
           className="absolute inset-0 w-full h-full object-contain"
         />
