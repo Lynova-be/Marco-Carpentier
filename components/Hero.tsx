@@ -1,5 +1,5 @@
 import { motion } from 'motion/react';
-import { ArrowRight, Sparkles } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 import { Button } from './ui/button';
 import { ImageWithFallback } from './figma/ImageWithFallback';
 
@@ -39,16 +39,6 @@ export function Hero() {
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           {/* Content */}
           <div className="space-y-8">
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8 }}
-              className="flex items-center space-x-2 text-blue-600"
-            >
-              <Sparkles size={20} />
-              <span className="font-medium">28 jaar ervaring</span>
-            </motion.div>
-
             <motion.h1
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
@@ -70,7 +60,7 @@ export function Hero() {
               transition={{ duration: 0.8, delay: 0.4 }}
               className="text-xl text-gray-600 leading-relaxed max-w-lg"
             >
-              Wij herstellen en spuiten ramen, deuren en geveldelen met oog voor detail. Al 28 jaar 
+              Ik herstel en spuit ramen, deuren en geveldelen met oog voor detail. Al 28 jaar 
               ervaring en vakmanschap op locatie.
             </motion.p>
 

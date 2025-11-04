@@ -1,7 +1,7 @@
 import { motion } from 'motion/react';
 import { Card, CardContent } from '../../components/ui/card';
 import { Button } from '../../components/ui/button';
-import { Mail, Phone, MapPin, Send, CheckCircle2, Clock } from 'lucide-react';
+import { Mail, Phone, MapPin, Send, CheckCircle2 } from 'lucide-react';
 
 export default function Contact() {
   return (
@@ -114,11 +114,11 @@ export default function Contact() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.1 }}
-            className="lg:col-span-2 space-y-6"
+            className="lg:col-span-2"
           >
             {/* Methods */}
-            <Card className="border border-primary/20 bg-white/90 backdrop-blur-md shadow-2xl ring-1 ring-primary/20">
-              <CardContent className="p-6">
+            <Card className="border border-primary/20 bg-white/90 backdrop-blur-md shadow-2xl ring-1 ring-primary/20 h-full">
+              <CardContent className="p-6 flex flex-col min-h-full lg:min-h-[100%]">
                 <h2 className="text-xl font-semibold mb-4">Contactgegevens</h2>
                 <div className="space-y-4">
                   <a href="mailto:carpentier_marco@telenet.be" className="flex items-center gap-3 group">
@@ -149,17 +149,23 @@ export default function Contact() {
                     </div>
                   </div>
                 </div>
-              </CardContent>
-            </Card>
-
-            {/* Map placeholder */}
-            <Card className="overflow-hidden border border-primary/20 bg-white/90 backdrop-blur-md shadow-2xl ring-1 ring-primary/20">
-              <CardContent className="p-0">
-                <div className="h-56 w-full bg-gradient-to-br from-blue-200/60 via-purple-200/60 to-pink-200/60 grid place-items-center">
-                  <div className="text-center">
-                    <div className="text-sm text-gray-600">Werkgebied</div>
-                    <div className="text-gray-800 font-semibold">Antwerpen</div>
-                  </div>
+                {/* Illustration to fill remaining space */}
+                <div className="flex-1 mt-2 grid place-items-center">
+                  <img
+                    src="/images/Coating_character.png"
+                    alt="Mobile Coating illustratie"
+                    className="max-h-28 md:max-h-36 w-auto object-contain drop-shadow-md"
+                    loading="lazy"
+                  />
+                </div>
+                {/* Bottom CTAs */}
+                <div className="mt-6 border-t border-primary/10 pt-4 flex flex-wrap gap-3">
+                  <a href="tel:+32497903908">
+                    <Button className="bg-primary text-primary-foreground hover:bg-primary/90">Bel nu</Button>
+                  </a>
+                  <a href="mailto:carpentier_marco@telenet.be">
+                    <Button variant="outline" className="border-primary text-primary hover:bg-primary/5">E-mail</Button>
+                  </a>
                 </div>
               </CardContent>
             </Card>

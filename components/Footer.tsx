@@ -1,5 +1,5 @@
 import { motion } from 'motion/react';
-import { Phone, Mail, MapPin, Clock } from 'lucide-react';
+import { Phone, Mail, MapPin, Clock, Receipt } from 'lucide-react';
 
 export function Footer() {
   return (
@@ -34,15 +34,19 @@ export function Footer() {
             <div className="space-y-3">
               <div className="flex items-center space-x-3">
                 <Phone size={18} className="text-blue-400" />
-                <span className="text-gray-300">06 123 456 789</span>
+                <span className="text-gray-300">GSM: 0497903908</span>
               </div>
               <div className="flex items-center space-x-3">
                 <Mail size={18} className="text-blue-400" />
-                <span className="text-gray-300">info@mobilecoating.nl</span>
+                <span className="text-gray-300">carpentier_marco@telenet.be</span>
               </div>
               <div className="flex items-center space-x-3">
                 <MapPin size={18} className="text-blue-400" />
-                <span className="text-gray-300">Heel Nederland</span>
+                <span className="text-gray-300">Valeriaanstraat 1A, 2040 Berendrecht</span>
+              </div>
+              <div className="flex items-center space-x-3">
+                <Receipt size={18} className="text-blue-400" />
+                <span className="text-gray-300">BTW: BE0662665990</span>
               </div>
             </div>
           </motion.div>
