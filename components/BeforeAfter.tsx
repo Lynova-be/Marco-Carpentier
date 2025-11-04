@@ -22,7 +22,7 @@ export function BeforeAfter() {
             </span>
           </h2>
           <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-            Schaaf aan het verschil te zien
+            Schuif om het verschil te zien
           </p>
         </motion.div>
 

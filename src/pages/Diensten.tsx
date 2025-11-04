@@ -4,6 +4,7 @@ import { Button } from '../../components/ui/button';
 import clsx from 'clsx';
 import { HoverSpotlight } from '../../components/ui/hover-spotlight';
 import * as React from 'react';
+import { ArrowRight } from 'lucide-react';
 import {
   Dialog,
   DialogContent,
@@ -141,6 +142,7 @@ export default function Diensten() {
                         <Card
                           role="button"
                           tabIndex={0}
+                          aria-label={`${s.title} – meer informatie`}
                           onClick={() => {
                             setActiveIndex(idx);
                             setOpen(true);
@@ -154,10 +156,23 @@ export default function Diensten() {
                           }}
                           className="relative overflow-hidden cursor-pointer border border-primary/20 bg-white/95 backdrop-blur-sm shadow-2xl ring-1 ring-primary/20 transition-all duration-300 will-change-transform hover:-translate-y-1 hover:shadow-[0_25px_60px_-15px_rgba(26,42,61,0.40)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50"
                         >
-                          <CardContent className="p-6">
+                          {/* Top-right 'Meer info' pill */}
+                          <div className="absolute top-3 right-3 z-10">
+                            <span className="inline-flex items-center gap-1 px-3 py-1 text-xs font-medium rounded-full bg-primary text-white shadow-sm opacity-90 group-hover:opacity-100 transition-opacity">
+                              Meer info
+                            </span>
+                          </div>
+
+                          <CardContent className="p-6 pb-4">
                             <h2 className="text-xl font-semibold mb-2">{s.title}</h2>
                             <p className="text-gray-600 leading-relaxed">{s.description}</p>
                           </CardContent>
+
+                          {/* Bottom CTA row */}
+                          <div className="flex items-center justify-between px-6 py-3 border-t border-primary/10 text-primary/90 bg-white/80 backdrop-blur-sm">
+                            <span className="text-sm font-semibold tracking-tight">Klik voor meer info</span>
+                            <ArrowRight className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-1" />
+                          </div>
                         </Card>
                       </HoverSpotlight>
                     </motion.div>
