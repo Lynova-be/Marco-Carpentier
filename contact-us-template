@@ -1,0 +1,75 @@
+<table width="100%" cellpadding="0" cellspacing="0" style="margin:0;padding:16px 0;background:#f3f4f6;font-family:system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;">
+  <tr>
+    <td align="center" style="padding:0 8px;">
+      <table cellpadding="0" cellspacing="0" style="width:100%;max-width:600px;background:#ffffff;border-radius:16px;overflow:hidden;box-shadow:0 20px 40px rgba(15,23,42,0.18);">
+        <!-- Header -->
+        <tr>
+          <td style="padding:20px 24px;border-bottom:1px solid #e5e7eb;background:linear-gradient(135deg,#0f172a,#1d4ed8,#7c3aed);color:#f9fafb;">
+            <h1 style="margin:0;font-size:18px;font-weight:700;line-height:1.3;">Nieuwe aanvraag via Mobile Coating website</h1>
+            <p style="margin:4px 0 0;font-size:12px;opacity:0.9;">Ontvangen op {{datum}}</p>
+          </td>
+        </tr>
+
+        <!-- Intro -->
+        <tr>
+          <td style="padding:20px 24px 8px 24px;">
+            <p style="margin:0 0 10px 0;font-size:14px;color:#111827;">
+              Er is een nieuw bericht binnengekomen via het contactformulier op de website.
+            </p>
+            <p style="margin:0 0 14px 0;font-size:13px;color:#4b5563;">
+              Hieronder vind je een overzicht van de gegevens.
+            </p>
+          </td>
+        </tr>
+
+        <!-- Gegevens -->
+        <tr>
+          <td style="padding:0 24px 20px 24px;">
+            <table width="100%" cellpadding="0" cellspacing="0" style="border-collapse:collapse;font-size:13px;color:#111827;">
+              <tr>
+                <td style="padding:4px 0;width:35%;font-weight:600;color:#4b5563;">Naam</td>
+                <td style="padding:4px 0;">{{naam}}</td>
+              </tr>
+              <tr>
+                <td style="padding:4px 0;font-weight:600;color:#4b5563;">E‑mail</td>
+                <td style="padding:4px 0;">
+                  <a href="mailto:{{email}}" style="color:#1d4ed8;text-decoration:none;">{{email}}</a>
+                </td>
+              </tr>
+              <tr>
+                <td style="padding:4px 0;font-weight:600;color:#4b5563;">Telefoon</td>
+                <td style="padding:4px 0;">{{telefoon}}</td>
+              </tr>
+              <tr>
+                <td style="padding:4px 0;font-weight:600;color:#4b5563;">Onderwerp</td>
+                <td style="padding:4px 0;">{{onderwerp}}</td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+
+        <!-- Bericht -->
+        <tr>
+          <td style="padding:0 24px 20px 24px;">
+            <h2 style="margin:0 0 6px 0;font-size:14px;font-weight:700;color:#111827;">Bericht</h2>
+            <div style="padding:10px 12px;border-radius:10px;border:1px solid #e5e7eb;background:#f9fafb;font-size:13px;color:#111827;line-height:1.5;white-space:pre-line;">
+              {{bericht}}
+            </div>
+          </td>
+        </tr>
+
+        <!-- Footer -->
+        <tr>
+          <td style="padding:12px 24px 14px 24px;border-top:1px solid #e5e7eb;font-size:11px;color:#6b7280;background:#f9fafb;">
+            <p style="margin:0 0 4px 0;">
+              Deze e‑mail is automatisch verzonden vanaf het contactformulier op de website van Mobile Coating.
+            </p>
+            <p style="margin:0;">
+              Antwoord rechtstreeks op deze e‑mail om contact op te nemen met de afzender.
+            </p>
+          </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+</table>
