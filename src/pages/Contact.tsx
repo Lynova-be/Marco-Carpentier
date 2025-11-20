@@ -1,9 +1,68 @@
+import * as React from 'react';
 import { motion } from 'motion/react';
 import { Card, CardContent } from '../../components/ui/card';
 import { Button } from '../../components/ui/button';
 import { Mail, Phone, MapPin, Send, CheckCircle2 } from 'lucide-react';
+import emailjs from '@emailjs/browser';
+
+const EMAILJS_SERVICE_ID = import.meta.env.VITE_EMAILJS_SERVICE_ID as string | undefined;
+const EMAILJS_TEMPLATE_ID = import.meta.env.VITE_EMAILJS_TEMPLATE_ID as string | undefined;
+const EMAILJS_PUBLIC_KEY = import.meta.env.VITE_EMAILJS_PUBLIC_KEY as string | undefined;
 
 export default function Contact() {
+  const [isSubmitting, setIsSubmitting] = React.useState(false);
+  const [status, setStatus] = React.useState<'idle' | 'success' | 'error'>('idle');
+  const [errorMessage, setErrorMessage] = React.useState<string | null>(null);
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    if (isSubmitting) return;
+
+    const form = e.currentTarget;
+    const data = new FormData(form);
+
+    const naam = (data.get('naam') as string) || '';
+    const email = (data.get('email') as string) || '';
+    const telefoon = (data.get('telefoon') as string) || '';
+    const onderwerp = (data.get('onderwerp') as string) || '';
+    const bericht = (data.get('bericht') as string) || '';
+
+    const templateParams = {
+      naam,
+      email,
+      telefoon,
+      onderwerp,
+      bericht,
+      datum: new Date().toLocaleString('nl-BE', {
+        day: '2-digit',
+        month: '2-digit',
+        year: 'numeric',
+        hour: '2-digit',
+        minute: '2-digit',
+      }),
+    };
+
+    try {
+      setIsSubmitting(true);
+      setStatus('idle');
+      setErrorMessage(null);
+
+      if (!EMAILJS_SERVICE_ID || !EMAILJS_TEMPLATE_ID || !EMAILJS_PUBLIC_KEY) {
+        throw new Error('EmailJS configuratie ontbreekt. Controleer de VITE_EMAILJS_* variabelen.');
+      }
+
+      await emailjs.send(EMAILJS_SERVICE_ID!, EMAILJS_TEMPLATE_ID!, templateParams, EMAILJS_PUBLIC_KEY!);
+
+      setStatus('success');
+      form.reset();
+    } catch (err) {
+      console.error('EmailJS error', err);
+      setStatus('error');
+      setErrorMessage('Er ging iets mis bij het versturen. Probeer het later opnieuw of neem telefonisch contact op.');
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
   return (
     <section className="relative py-24 overflow-hidden">
       {/* Gradient background */}
@@ -43,10 +102,7 @@ export default function Contact() {
               <CardContent className="p-6 lg:p-8">
                 <form
                   className="grid grid-cols-1 md:grid-cols-2 gap-4"
-                  onSubmit={(e) => {
-                    e.preventDefault();
-                    alert('Bedankt! We nemen zo snel mogelijk contact met je op.');
-                  }}
+                  onSubmit={handleSubmit}
                 >
                   <div className="md:col-span-1">
                     <label className="block text-sm font-medium mb-1">Naam</label>
@@ -54,6 +110,7 @@ export default function Contact() {
                       required
                       type="text"
                       placeholder="Voor- en achternaam"
+                      name="naam"
                       className="w-full rounded-md border border-input bg-background px-3 py-2 outline-none focus:ring-2 focus:ring-primary/50"
                     />
                   </div>
@@ -63,6 +120,7 @@ export default function Contact() {
                       required
                       type="email"
                       placeholder="naam@bedrijf.be"
+                      name="email"
                       className="w-full rounded-md border border-input bg-background px-3 py-2 outline-none focus:ring-2 focus:ring-primary/50"
                     />
                   </div>
@@ -71,6 +129,7 @@ export default function Contact() {
                     <input
                       type="tel"
                       placeholder="+32 4xx xx xx xx"
+                      name="telefoon"
                       className="w-full rounded-md border border-input bg-background px-3 py-2 outline-none focus:ring-2 focus:ring-primary/50"
                     />
                   </div>
@@ -79,6 +138,7 @@ export default function Contact() {
                     <input
                       type="text"
                       placeholder="Offerte / Vraag / Advies"
+                      name="onderwerp"
                       className="w-full rounded-md border border-input bg-background px-3 py-2 outline-none focus:ring-2 focus:ring-primary/50"
                     />
                   </div>
@@ -88,6 +148,7 @@ export default function Contact() {
                       required
                       rows={6}
                       placeholder="Beschrijf kort je project: type ondergrond, aantal ramen/deuren, gewenste kleur/afwerking, foto’s indien mogelijk."
+                      name="bericht"
                       className="w-full rounded-md border border-input bg-background px-3 py-2 outline-none focus:ring-2 focus:ring-primary/50"
                     />
                   </div>
@@ -97,11 +158,26 @@ export default function Contact() {
                     <p>We gebruiken je gegevens uitsluitend om contact met je op te nemen over je aanvraag.</p>
                   </div>
 
-                  <div className="md:col-span-2">
-                    <Button className="bg-primary text-primary-foreground hover:bg-primary/90 inline-flex items-center gap-2">
+                  <div className="md:col-span-2 space-y-3">
+                    <Button
+                      type="submit"
+                      disabled={isSubmitting}
+                      className="bg-primary text-primary-foreground hover:bg-primary/90 disabled:opacity-70 disabled:cursor-not-allowed inline-flex items-center gap-2"
+                    >
                       <Send size={18} />
-                      Versturen
+                      {isSubmitting ? 'Verzenden…' : 'Versturen'}
                     </Button>
+
+                    {status === 'success' && (
+                      <p className="text-sm text-green-700">
+                        Bedankt! Je bericht is verzonden. We nemen zo snel mogelijk contact met je op.
+                      </p>
+                    )}
+                    {status === 'error' && (
+                      <p className="text-sm text-red-600">
+                        {errorMessage}
+                      </p>
+                    )}
                   </div>
                 </form>
               </CardContent>
