@@ -111,6 +111,16 @@ export function Footer() {
               Contact
             </a>
           </div>
+          <div className="mt-4 md:mt-0">
+            <a
+              href="https://lynova.be"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-gray-500 hover:text-blue-400 transition-colors text-sm"
+            >
+              Website ontwikkeld door Lynova
+            </a>
+          </div>
         </motion.div>
       </div>
     </footer>
