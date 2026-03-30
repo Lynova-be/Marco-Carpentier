@@ -12,6 +12,63 @@ import {
   DialogHeader,
   DialogTitle,
 } from '../../components/ui/dialog';
+import { PageSeo } from '../../components/PageSeo'
+import { JsonLd } from '../../components/JsonLd'
+
+const serviceSchemas = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'Service',
+    name: 'Schadeherstel',
+    description:
+      'Vakkundige reparaties van lakschade, krassen en deuken aan aluminium ramen, deuren en geveldelen.',
+    provider: {
+      '@type': 'LocalBusiness',
+      name: 'Mobile Coating',
+      url: 'https://www.mobile-coating.be',
+    },
+    areaServed: { '@type': 'AdministrativeArea', name: 'Antwerpen' },
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'Service',
+    name: 'Inbraakherstel',
+    description:
+      'Professioneel herstel van beschadigingen aan ramen, deuren en poorten na inbraak.',
+    provider: {
+      '@type': 'LocalBusiness',
+      name: 'Mobile Coating',
+      url: 'https://www.mobile-coating.be',
+    },
+    areaServed: { '@type': 'AdministrativeArea', name: 'Antwerpen' },
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'Service',
+    name: 'Renovatie van aluminium ramen, deuren en poorten',
+    description:
+      'Verweerde of verkleurde aluminium oppervlakken opfrissen met weerbestendige coatings.',
+    provider: {
+      '@type': 'LocalBusiness',
+      name: 'Mobile Coating',
+      url: 'https://www.mobile-coating.be',
+    },
+    areaServed: { '@type': 'AdministrativeArea', name: 'Antwerpen' },
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'Service',
+    name: 'Spuiten van PVC ramen en deuren',
+    description:
+      'PVC ramen en deuren spuiten in elke gewenste kleur en afwerking met hoogwaardige coatings.',
+    provider: {
+      '@type': 'LocalBusiness',
+      name: 'Mobile Coating',
+      url: 'https://www.mobile-coating.be',
+    },
+    areaServed: { '@type': 'AdministrativeArea', name: 'Antwerpen' },
+  },
+]
 
 export default function Diensten() {
   const [open, setOpen] = React.useState(false);
@@ -67,6 +124,14 @@ export default function Diensten() {
 
   return (
     <section className="py-24">
+      <PageSeo
+        title="Onze Diensten – Schadeherstel, Renovatie & PVC Spuiten | Mobile Coating"
+        description="Ontdek alle coating diensten van Mobile Coating: schadeherstel, inbraakherstel, renovatie van aluminium ramen en spuiten van PVC ramen in Antwerpen."
+        canonical="https://www.mobile-coating.be/diensten"
+      />
+      {serviceSchemas.map((schema, i) => (
+        <JsonLd key={i} data={schema} />
+      ))}
       <div className="container mx-auto px-4">
         {/* Header */}
         <motion.div
