@@ -5,6 +5,7 @@ import { Dialog, DialogContent } from '../../components/ui/dialog';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { ImageWithFallback } from '../../components/figma/ImageWithFallback';
 import { Slider } from '../../components/ui/slider';
+import { PageSeo } from '../../components/PageSeo'
 
 // Support both before/after pairs and single photos
 type PairItem = { before: string; after: string; alt: string };
@@ -22,84 +23,94 @@ const images: GalleryItem[] = [
   {
     before: 'Afbeelding van WhatsApp op 2025-09-18 om 20.12.33_78c0a3b3.jpg',
     after: 'Afbeelding van WhatsApp op 2025-09-18 om 20.12.33_8fd99c78.jpg',
-    alt: '',
+    alt: 'Schadeherstel aluminium ramen – voor en na coating Mobile Coating',
   },
   {
     before: 'Afbeelding van WhatsApp op 2025-09-18 om 20.25.43_10cc6d51.jpg',
     after: 'Afbeelding van WhatsApp op 2025-09-18 om 20.25.43_d4ed4b3d.jpg',
-    alt: '',
+    alt: 'Renovatie aluminium ramen – voor en na resultaat',
   },
   {
     before: 'Afbeelding van WhatsApp op 2025-09-18 om 20.26.26_7c8d9721.jpg',
     after: 'Afbeelding van WhatsApp op 2025-09-18 om 20.26.27_b38d7984.jpg',
-    alt: '',
+    alt: 'PVC ramen gespoten – voor en na afwerking Mobile Coating',
   },
   {
     before: 'Afbeelding van WhatsApp op 2025-09-18 om 20.27.45_9594b1e0.jpg',
     after: 'Afbeelding van WhatsApp op 2025-09-18 om 20.27.45_01243dbd.jpg',
-    alt: '',
+    alt: 'Inbraakherstel deuren – voor en na coating resultaat',
   },
   {
     before: 'Afbeelding van WhatsApp op 2025-09-18 om 20.54.12_d78ae399.jpg',
     after: 'Afbeelding van WhatsApp op 2025-09-18 om 20.54.12_62e78012.jpg',
-    alt: '',
+    alt: 'Garagepoort gespoten – voor en na professionele coating',
   },
   {
     before: 'Afbeelding van WhatsApp op 2025-09-18 om 20.55.15_bc2dd99e.jpg',
     after: 'Afbeelding van WhatsApp op 2025-09-18 om 20.55.16_6db8a658.jpg',
-    alt: '',
+    alt: 'Aluminium deur renovatie – voor en na Mobile Coating Antwerpen',
   },
   {
     before: 'Afbeelding van WhatsApp op 2025-09-18 om 20.56.35_3a74c594.jpg',
     after: 'Afbeelding van WhatsApp op 2025-09-18 om 20.56.35_2c719731.jpg',
-    alt: '',
+    alt: 'Raam schadeherstel – voor en na kleurmatching coating',
   },
   {
     before: 'Afbeelding van WhatsApp op 2025-09-18 om 20.57.53_e91223a2.jpg',
     after: 'Afbeelding van WhatsApp op 2025-09-18 om 20.57.53_5cb78684.jpg',
-    alt: '',
+    alt: 'PVC deur gespoten – voor en na resultaat Mobile Coating',
   },
   {
     before: 'Afbeelding van WhatsApp op 2025-09-18 om 20.58.38_6f38058c.jpg',
     after: 'Afbeelding van WhatsApp op 2025-09-18 om 20.58.38_1d1a0458.jpg',
-    alt: '',
+    alt: 'Veranda coating – voor en na professioneel gespoten',
   },
   {
     before: 'Afbeelding van WhatsApp op 2025-09-18 om 20.59.31_07887158.jpg',
     after: 'Afbeelding van WhatsApp op 2025-09-18 om 20.59.31_9386934c.jpg',
-    alt: '',
+    alt: 'Aluminium ramen renovatie – voor en na coating Antwerpen',
   },
   {
     before: 'Afbeelding van WhatsApp op 2025-09-18 om 21.03.42_e5c231f5.jpg',
     after: 'Afbeelding van WhatsApp op 2025-09-18 om 21.03.42_be813768.jpg',
-    alt: '',
+    alt: 'Geveldelen coating – voor en na afwerking Mobile Coating',
   },
   {
     before: 'Afbeelding van WhatsApp op 2025-09-18 om 21.04.52_ea68c676.jpg',
     after: 'Afbeelding van WhatsApp op 2025-09-18 om 21.04.52_c2f7427b.jpg',
-    alt: '',
+    alt: 'Deur inbraakherstel – voor en na professionele coating',
   },
   {
     before: 'Afbeelding van WhatsApp op 2025-09-18 om 21.05.52_829d8973.jpg',
     after: 'Afbeelding van WhatsApp op 2025-09-18 om 21.05.52_41f0bd4d.jpg',
-    alt: '',
+    alt: 'PVC ramen kleurwijziging – voor en na gespoten door Mobile Coating',
   },
   {
     before: 'Afbeelding van WhatsApp op 2025-09-18 om 21.07.50_aad2cb2f.jpg',
     after: 'Afbeelding van WhatsApp op 2025-09-18 om 21.07.50_fc5e8b94.jpg',
-    alt: '',
+    alt: 'Aluminium poort coating – voor en na resultaat Antwerpen',
   },
   {
     before: 'Afbeelding van WhatsApp op 2025-09-18 om 20.59.07_09fd225b.jpg',
     after: 'Afbeelding van WhatsApp op 2025-09-18 om 20.59.07_d8ed1b3f.jpg',
-    alt: '',
+    alt: 'Raam schadeherstel – voor en na kleurmatching Mobile Coating',
   },
-  { src: 'Afbeelding van WhatsApp op 2025-09-18 om 20.56.10_de3cd015.jpg', alt: '' },
-  { src: 'Afbeelding van WhatsApp op 2025-09-18 om 20.52.48_42a2dfde.jpg', alt: '' },
-  { src: 'Afbeelding van WhatsApp op 2025-09-18 om 20.50.59_b8707d5b.jpg', alt: '' },
-  { src: 'Afbeelding van WhatsApp op 2025-09-18 om 20.31.38_0b22cf57.jpg', alt: '' },
-  
-
+  {
+    src: 'Afbeelding van WhatsApp op 2025-09-18 om 20.56.10_de3cd015.jpg',
+    alt: 'Professioneel gespoten aluminium ramen – Mobile Coating Antwerpen',
+  },
+  {
+    src: 'Afbeelding van WhatsApp op 2025-09-18 om 20.52.48_42a2dfde.jpg',
+    alt: 'Coating resultaat PVC deur – Mobile Coating Vlaanderen',
+  },
+  {
+    src: 'Afbeelding van WhatsApp op 2025-09-18 om 20.50.59_b8707d5b.jpg',
+    alt: 'Gespoten aluminium gevelelement – Mobile Coating',
+  },
+  {
+    src: 'Afbeelding van WhatsApp op 2025-09-18 om 20.31.38_0b22cf57.jpg',
+    alt: 'Renovatie aluminium ramen en deuren – Mobile Coating Antwerpen',
+  },
 ];
 
 export default function Fotos() {
@@ -112,6 +123,11 @@ export default function Fotos() {
 
   return (
     <section className="relative py-24">
+      <PageSeo
+        title="Realisaties & Foto's – Coating Resultaten | Mobile Coating Antwerpen"
+        description="Bekijk de voor-en-na foto's van onze coatingwerken aan ramen, deuren en gevels in Antwerpen en omgeving."
+        canonical="https://www.mobile-coating.be/fotos"
+      />
       <div className="absolute inset-0 -z-10 bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50" />
       <div className="container mx-auto px-4">
         <motion.div
