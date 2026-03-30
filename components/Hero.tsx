@@ -60,8 +60,7 @@ export function Hero() {
               transition={{ duration: 0.8, delay: 0.4 }}
               className="text-xl text-gray-600 leading-relaxed max-w-lg"
             >
-              Ik herstel en spuit ramen, deuren en geveldelen met oog voor detail. Al 28 jaar 
-              ervaring en vakmanschap op locatie.
+              Ik herstel en spuit aluminium ramen, PVC deuren, veranda's en geveldelen met oog voor detail — bij u thuis in Antwerpen en heel Vlaanderen. Al 28 jaar ervaring en vakmanschap op locatie.
             </motion.p>
 
             <motion.div
@@ -122,7 +121,7 @@ export function Hero() {
             <div className="relative rounded-3xl overflow-hidden shadow-2xl">
               <ImageWithFallback
                 src={new URL('../src/images/Afbeelding van WhatsApp op 2025-09-18 om 20.25.43_d4ed4b3d.jpg', import.meta.url).href}
-                alt="Professional coating work"
+                alt="Professioneel gespoten aluminium ramen en deuren door Mobile Coating Antwerpen"
                 className="w-full h-[600px] object-cover"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-blue-900/20 to-transparent"></div>
