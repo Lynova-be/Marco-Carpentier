@@ -12,31 +12,35 @@ export function Services() {
     {
       icon: Car,
       title: 'Schadeherstel',
+      alt: 'Schadeherstel aan aluminium ramen en deuren – Mobile Coating Antwerpen',
       description: 'Snelle en vakkundige reparaties van lakschade, krassen en deuken.',
       image: imgSchade,
-      gradient: 'from-blue-500 to-cyan-500'
+      gradient: 'from-blue-500 to-cyan-500',
     },
     {
       icon: Shield,
       title: 'Inbraakherstel',
+      alt: 'Inbraakherstel van deuren en ramen – professioneel gespoten door Mobile Coating',
       description: 'Esthetisch herstel na sporen na inbraak met duurzame afwerking.',
       image: imgInbraak,
-      gradient: 'from-purple-500 to-pink-500'
+      gradient: 'from-purple-500 to-pink-500',
     },
     {
       icon: Home,
       title: 'Renovatie',
-      description: 'Alu ramen, deuren, veranda\'s en garagepoorten weer als nieuw.',
+      alt: 'Renovatie van aluminium ramen, veranda en garagepoort – Mobile Coating Antwerpen',
+      description: "Alu ramen, deuren, veranda's en garagepoorten weer als nieuw.",
       image: imgRenovatie,
-      gradient: 'from-green-500 to-teal-500'
+      gradient: 'from-green-500 to-teal-500',
     },
     {
       icon: Palette,
       title: 'Spuiten van PVC',
+      alt: 'PVC ramen en deuren spuiten in elke kleur – Mobile Coating Antwerpen',
       description: 'Strakke kwaliteitsafwerking voor PVC ramen en deuren in elke kleur.',
       image: imgPVC,
-      gradient: 'from-orange-500 to-red-500'
-    }
+      gradient: 'from-orange-500 to-red-500',
+    },
   ];
 
   return (
@@ -76,7 +80,7 @@ export function Services() {
                   <div className="relative h-48 overflow-hidden">
                     <img
                       src={service.image}
-                      alt={service.title}
+                      alt={service.alt}
                       className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                     />
                     <div className={`absolute inset-0 bg-gradient-to-t ${service.gradient} opacity-80`}></div>
