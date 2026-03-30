@@ -31,7 +31,7 @@ export function Footer() {
             viewport={{ once: true }}
           >
             <h4 className="font-semibold text-lg mb-4">Contact</h4>
-            <div className="space-y-3">
+            <address className="space-y-3 not-italic">
               <div className="flex items-center space-x-3">
                 <Phone size={18} className="text-blue-400" />
                 <span className="text-gray-300">GSM: 0497903908</span>
@@ -48,7 +48,7 @@ export function Footer() {
                 <Receipt size={18} className="text-blue-400" />
                 <span className="text-gray-300">BTW: BE0662665990</span>
               </div>
-            </div>
+            </address>
           </motion.div>
 
           {/* Services */}
