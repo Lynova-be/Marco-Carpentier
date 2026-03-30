@@ -1,28 +1,12 @@
 import path from 'path'
 import { fileURLToPath } from 'url'
-import { createRequire } from 'module'
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
-const require = createRequire(import.meta.url)
-const PrerenderPlugin = require('vite-plugin-prerender')
 
 export default defineConfig({
-  build: {
-    target: 'chrome77',
-  },
-  plugins: [
-    react(),
-    PrerenderPlugin({
-      staticDir: path.join(__dirname, 'dist'),
-      routes: ['/', '/diensten', '/fotos', '/contact'],
-      rendererOptions: {
-        args: ['--no-sandbox', '--disable-setuid-sandbox'],
-        renderAfterElementExists: 'header',
-      },
-    }),
-  ],
+  plugins: [react()],
   resolve: {
     alias: {
       '@': '/src',
