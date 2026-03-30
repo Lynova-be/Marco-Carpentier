@@ -4,6 +4,7 @@ import { Card, CardContent } from '../../components/ui/card';
 import { Button } from '../../components/ui/button';
 import { Mail, Phone, MapPin, Send, CheckCircle2 } from 'lucide-react';
 import emailjs from '@emailjs/browser';
+import { PageSeo } from '../../components/PageSeo'
 
 const EMAILJS_SERVICE_ID = import.meta.env.VITE_EMAILJS_SERVICE_ID as string | undefined;
 const EMAILJS_TEMPLATE_ID = import.meta.env.VITE_EMAILJS_TEMPLATE_ID as string | undefined;
@@ -65,6 +66,11 @@ export default function Contact() {
   };
   return (
     <section className="relative py-24 overflow-hidden">
+      <PageSeo
+        title="Contact & Offerte Aanvragen – Mobile Coating Antwerpen"
+        description="Neem contact op met Mobile Coating voor een vrijblijvende offerte. Wij zijn actief in Antwerpen en heel Vlaanderen. Bel 0497 90 39 08."
+        canonical="https://www.mobile-coating.be/contact"
+      />
       {/* Gradient background */}
       <div className="absolute inset-0 -z-10 bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50" />
       <div className="absolute -top-40 -right-40 size-[32rem] rounded-full bg-blue-500/10 blur-3xl" />
